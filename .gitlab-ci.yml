@@ -11,7 +11,7 @@ before_script:
 
 after_script:
   - echo "Uploding test respot to dashbaord"
-  - curl -X POST -H "x-api-key:$API_KEY" -H "Content-Type:application/*" -F "file[]=target/failsafe-reports/TEST-*.xml" https://app.calliope.pro/api/v2/profile/4011/import/junit
+  - curl -X POST -H "x-api-key:$API_KEY" -H "Content-Type:multipart/form-data" -F "file[]=target/failsafe-reports/TEST-*.xml" https://app.calliope.pro/api/v2/profile/4011/import/junit
 
 build:
   stage: build
