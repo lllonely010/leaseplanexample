@@ -14,5 +14,10 @@ build:
   script:
     - echo "Start building"
     - mvn clean verify
+  artifacts:
+    when: always
+    reports:
+      junit:
+        - target/failsafe-reports/TEST-*.xml
 
 
