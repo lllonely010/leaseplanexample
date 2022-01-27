@@ -3,11 +3,16 @@ image: maven:3.8.4-jdk-8
 stages:
   - build
 
+variables:
+  API_KEY: MWI2MGNhZDAwZjhmZGU0NjEzMTEwZjMzYTkwYzM0NDg2NmY5ZjRiY2FhMWJhNTM5YTQ4MzQyZjRiYmRhYjA5ZWI1
+  PROFILE_ID: 1203
+
 before_script:
   - echo "Before script section"
 
 after_script:
-  - echo "After script section"
+  - echo "Uploding test respot to dashbaord"
+  - curl -X POST -H "x-api-key:$API_KEY" -H "Content-Type:application/*" -F "file[]=target/failsafe-reports/TEST-Search product.xml" https://app.calliope.pro/api/v2/profile/$PROFILE_ID/import/junit
 
 build:
   stage: build
