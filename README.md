@@ -40,6 +40,12 @@ Please run the below command from root directory to open the result after execut
 ```bash
 open target/site/serenity/index.html 
 ```
+
+## Gitlab testing report
+
+Go to pipeline, the junit report will be shown. Also download artifacts from pipieline, open serenity test report.
+
+
 ### Additional configurations
 
 Additional command line parameters can be passed for switching the application environment.
