@@ -18,8 +18,7 @@ public class SearchProductSteps {
 
     @Steps
     public SearchProductActions searchProductActions;
-
-    @When("I call the get search product endpoint {string}")
+    @When("^I call the get search product endpoint (.*)$")
     public void iCallTheGetSearchProductEndpoint(String product) {
         searchProductActions.searchProducts(product);
     }
@@ -33,7 +32,7 @@ public class SearchProductSteps {
         commonSteps.responseShouldNotBeEmptyList(lastResponse());
     }
 
-    @Then("verify the product {string} should be in Search results")
+    @Then("^verify the product (.*) should be in Search results$")
     public void theProductShouldBedInSearchResults(String product) {
         searchProductActions.verityProductInResponse(lastResponse(),product);
     }
@@ -48,4 +47,7 @@ public class SearchProductSteps {
         commonSteps.verifyResponseSchema(lastResponse(), spec);
     }
 
+    @When("I call the get search product endpoint <product>")
+    public void iCallTheGetSearchProductEndpointProduct() {
+    }
 }

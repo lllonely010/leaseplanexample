@@ -18,6 +18,8 @@ build:
     - mvn clean verify
   artifacts:
     when: always
+    paths:
+      - target/site
     reports:
       junit:
         - target/failsafe-reports/TEST-*.xml

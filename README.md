@@ -35,6 +35,32 @@ src
 ## Executing the tests
 Run `mvn clean verify` from the command line.
 
+The test results will be recorded here `target/site/serenity/index.html`.
+Please run the below command from root directory to open the result after execution.
+```bash
+open target/site/serenity/index.html 
+```
+### Additional configurations
+
+Additional command line parameters can be passed for switching the application environment.
+
+Run mvn clean verify -Denvironment=dev
+
+Configurations to for different environments are set in the `test/resources/serenity.conf` file. In real time projects each environment can be configured with its baseurl to run the tests based on different environments.
+```
+environments {
+  default {
+    baseurl = "https://waarkoop-server.herokuapp.com"
+  }
+  dev {
+    baseurl = "https://waarkoop-server.herokuapp.com"
+  }
+  staging {
+    baseurl = "https://waarkoop-server.herokuapp.com"
+  }
+}
+```
+
 ## My Update of this assignment:
 - groupId and artifactId: Change the project identifier
 - Remove gradle setting: Since we will use Maven

@@ -1,6 +1,7 @@
 target/
 build
 .m2
+.github
 out
 .gradle
 pom.xml.tag
