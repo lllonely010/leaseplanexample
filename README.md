@@ -44,7 +44,6 @@ open target/site/serenity/index.html
 - Go to CI/CD --> Pipelines, select the pipeline --> test tab, the online junit report will be there.
 - Go to download artifact, open serenity report.
 
-
 ### Additional configurations
 
 Additional command line parameters can be passed for switching the application environment.
