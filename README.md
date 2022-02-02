@@ -32,7 +32,7 @@ src
       + schema                      Folder containing json schema for API schema validation
       Serenity.conf                 Configurations file
 ```
-## Executing the tests
+## Executing the tests 
 Run `mvn clean verify` from the command line.
 
 The test results will be recorded here `target/site/serenity/index.html`.
@@ -40,6 +40,11 @@ Please run the below command from root directory to open the result after execut
 ```bash
 open target/site/serenity/index.html 
 ```
+## Gitlab report
+- Go to CI/CD --> Pipelines, select the pipeline --> test tab, the online junit report will be there.
+- Go to download artifact, open serenity report.
+
+
 ### Additional configurations
 
 Additional command line parameters can be passed for switching the application environment.

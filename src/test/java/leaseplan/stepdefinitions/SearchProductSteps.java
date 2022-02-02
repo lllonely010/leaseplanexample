@@ -4,7 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import leaseplan.actions.SearchProductActions;
-import leaseplan.common.CommonSteps;
+import leaseplan.actions.CommonActions;
 import net.thucydides.core.annotations.Steps;
 
 import static net.serenitybdd.rest.SerenityRest.restAssuredThat;
@@ -14,7 +14,7 @@ import static org.hamcrest.Matchers.*;
 public class SearchProductSteps {
 
     @Steps
-    public CommonSteps commonSteps;
+    public CommonActions commonSteps;
 
     @Steps
     public SearchProductActions searchProductActions;
@@ -45,9 +45,5 @@ public class SearchProductSteps {
     @And("the schema should match with the specification defined in {string}")
     public void the_schema_should_match_with_the_specification(String spec) {
         commonSteps.verifyResponseSchema(lastResponse(), spec);
-    }
-
-    @When("I call the get search product endpoint <product>")
-    public void iCallTheGetSearchProductEndpointProduct() {
     }
 }

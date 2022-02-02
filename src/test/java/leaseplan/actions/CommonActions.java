@@ -1,4 +1,4 @@
-package leaseplan.common;
+package leaseplan.actions;
 
 import io.cucumber.java.en.Then;
 import io.restassured.response.Response;
@@ -6,14 +6,14 @@ import static io.restassured.module.jsv.JsonSchemaValidator.matchesJsonSchemaInC
 import static org.assertj.core.api.Assertions.assertThat;
 
 
-public class CommonSteps {
+public class CommonActions {
 
     @Then("Verify that API response is {int}")
     public void responseCodeIs(int responseCode, Response lastResponse) {
         assertThat(lastResponse.statusCode()).isEqualTo(responseCode);
     }
 
-    @Then("Verify that response isn't  empty list")
+    @Then("Verify that response isn't an empty list")
     public void responseShouldNotBeEmptyList(Response lastResponse) {
         assertThat(lastResponse.getBody().jsonPath().getList("$").size()).isNotZero();
     }
