@@ -18,9 +18,15 @@ public class SearchProductSteps {
 
     @Steps
     public SearchProductActions searchProductActions;
-    @When("^I call the get search product endpoint (.*)$")
+
+    @When("^I call the get search test product endpoint (.*)$")
     public void iCallTheGetSearchProductEndpoint(String product) {
-        searchProductActions.searchProducts(product);
+        searchProductActions.searchTestProducts(product);
+    }
+
+    @When("I call the get search test endpoint")
+    public void iCallTheGetSearchTestEndpoint() {
+        searchProductActions.searchTest();
     }
 
     @Then("verify the search results of product should be displayed")
@@ -39,7 +45,18 @@ public class SearchProductSteps {
 
     @Then("verify not found error should be displayed in search results")
     public void notFoundErrorShouldBeDisplayedInSearchResult() {
-        restAssuredThat(response -> response.statusCode(404).body("detail.error", is(true)));
+        restAssuredThat(
+                response -> response
+                        .statusCode(404)
+                        .body("detail.error", is(true)));
+    }
+
+    @Then("verify unauthorized error should be displayed in search result")
+    public void unauthorizedErrorShouldBeDisplayedInSearchResult() {
+        restAssuredThat(
+                response -> response
+                        .statusCode(401)
+                        .body("detail", is("Not authenticated")));
     }
 
     @And("the schema should match with the specification defined in {string}")
