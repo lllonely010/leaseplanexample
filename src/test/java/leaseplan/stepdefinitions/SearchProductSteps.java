@@ -7,14 +7,13 @@ import leaseplan.actions.SearchProductActions;
 import leaseplan.actions.CommonActions;
 import net.thucydides.core.annotations.Steps;
 
-import static net.serenitybdd.rest.SerenityRest.restAssuredThat;
-import static net.serenitybdd.rest.SerenityRest.lastResponse;
+import static net.serenitybdd.rest.SerenityRest.*;
 import static org.hamcrest.Matchers.*;
 
 public class SearchProductSteps {
 
     @Steps
-    public CommonActions commonSteps;
+    public CommonActions commonActions;
 
     @Steps
     public SearchProductActions searchProductActions;
@@ -30,37 +29,31 @@ public class SearchProductSteps {
     }
 
     @Then("verify the search results of product should be displayed")
-    public void theSearchResultsOfProductShouldBeDisplayed(){ commonSteps.responseCodeIs(200, lastResponse());
+    public void theSearchResultsOfProductShouldBeDisplayed(){ commonActions.responseCodeIs(200);
     }
 
     @Then("verify the product list should not be empty in Search results")
     public void theProductShouldBeDisplayedInSearchResults() {
-        commonSteps.responseShouldNotBeEmptyList(lastResponse());
+        commonActions.responseShouldNotBeEmptyList();
     }
 
     @Then("^verify the product (.*) should be in Search results$")
     public void theProductShouldBedInSearchResults(String product) {
-        searchProductActions.verityProductInResponse(lastResponse(),product);
+        searchProductActions.verityProductInResponse(product);
     }
 
     @Then("verify not found error should be displayed in search results")
     public void notFoundErrorShouldBeDisplayedInSearchResult() {
-        restAssuredThat(
-                response -> response
-                        .statusCode(404)
-                        .body("detail.error", is(true)));
+        then().statusCode(404).body("detail.error", is(true));
     }
 
     @Then("verify unauthorized error should be displayed in search result")
     public void unauthorizedErrorShouldBeDisplayedInSearchResult() {
-        restAssuredThat(
-                response -> response
-                        .statusCode(401)
-                        .body("detail", is("Not authenticated")));
+        then().statusCode(401).body("detail", is("Not authenticated"));
     }
 
     @And("the schema should match with the specification defined in {string}")
     public void the_schema_should_match_with_the_specification(String spec) {
-        commonSteps.verifyResponseSchema(lastResponse(), spec);
+        commonActions.verifyResponseSchema(spec);
     }
 }

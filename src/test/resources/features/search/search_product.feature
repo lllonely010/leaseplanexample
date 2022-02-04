@@ -16,7 +16,7 @@ Feature: Search product
 
   @negative
   Scenario: Search test with unavailable product
-    When I call the get search test product endpoint "tea"
+    When I call the get search test product endpoint tea
     Then verify not found error should be displayed in search results
 
   @negative

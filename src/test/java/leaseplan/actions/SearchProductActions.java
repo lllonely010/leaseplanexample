@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static net.serenitybdd.rest.SerenityRest.lastResponse;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class SearchProductActions {
@@ -29,16 +30,16 @@ public class SearchProductActions {
     }
 
     @When("Get the product list from response")
-    public List<HashMap<String, Object> > getProducts(Response productRes, String pro){
-        List<HashMap<String, Object>> products = productRes.jsonPath().getList("$");
+    public List<HashMap<String, Object> > getProducts(String pro){
+        List<HashMap<String, Object>> products = lastResponse().jsonPath().getList("$");
         LOGGER.info("Response list size is {}", products.size());
         LOGGER.info("Response list is {}", products);
         return products.stream().filter(product -> product.get("title").toString().contains(pro)).collect(Collectors.toList());
     }
 
     @Then("Verify the product in response")
-    public void verityProductInResponse(Response productRes, String pro){
-        List<HashMap<String, Object>> filteredProducts = this.getProducts(productRes,pro);
+    public void verityProductInResponse(String pro){
+        List<HashMap<String, Object>> filteredProducts = this.getProducts(pro);
         LOGGER.info("Response filtered list size is {}", filteredProducts.size());
         LOGGER.info("Response list is {}", filteredProducts);
         assertThat(filteredProducts.size()).isPositive();
