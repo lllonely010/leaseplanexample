@@ -39,7 +39,7 @@ public class SearchProductSteps {
 
     @Then("^verify the product (.*) should be in Search results$")
     public void theProductShouldBedInSearchResults(String product) {
-        searchProductActions.verityProductInResponse(product);
+        searchProductActions.verityProductInResponseResult(product);
     }
 
     @Then("verify not found error should be displayed in search results")
